@@ -1,0 +1,135 @@
+[
+    {
+      "id": "0",
+      "title": "King Nothing",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Load",
+      "year": 1996,
+      "isSoldOut": true,
+      "imageUrl": "http://i.scdn.co/image/5a06711d7fc48d5e0e3f9a3274ffed3f0af1bd91"
+    },
+    {
+      "id": "1",
+      "title": "Epitaph",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "In The Court Of The Crimson King",
+      "year": 1969,
+      "isSoldOut": true
+    },
+    {
+      "id": "2",
+      "title": "Siyah (Esved)",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Neyse",
+      "year": 2011,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b27363a94f6459d13c78bda9c872"
+    },
+    {
+      "id": "3",
+      "title": "Angelica",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Eternity",
+      "year": 1996,
+      "isSoldOut": true,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b2736c62df3fa967ac4382b54147"
+    },
+    {
+      "id": "4",
+      "title": "Living in the Shadows",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "(Single)",
+      "year": 2016,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b27313f1a15c18f40a991691f3d6"
+    },
+    {
+      "id": "5",
+      "title": "Habibi",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Amir",
+      "year": 2018,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/f17ddfa246db1b8e1f681f658be732b0779d7ea2"
+    },
+    {
+      "id": "6",
+      "title": "All Along the Watchtower",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Electric Ladyland",
+      "year": 1968,
+      "isSoldOut": true,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273522088789d49e216d9818292"
+    },
+    {
+      "id": "7",
+      "title": "Benimle Uçmak İster Misin?",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Satılık",
+      "year": 2001,
+      "isSoldOut": false
+    },
+    {
+      "id": "8",
+      "title": "God Was Never On Your Side",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Kiss of Death",
+      "year": 2001,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273ae5941e5e616db0fc4dcd089"
+    },
+    {
+      "id": "9",
+      "title": "Snuff",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "All Hope Is Gone",
+      "year": 2008,
+      "isSoldOut": true,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273457163bec7e8e4decf8c6375"
+    },
+    {
+      "id": "10",
+      "title": "Duş",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "En Güzel Hikayem",
+      "year": 2004,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b2732611f7e8a56c4c213bc13965"
+    },
+    {
+      "id": "11",
+      "title": "Black",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Black",
+      "year": 2015,
+      "isSoldOut": true,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273e4e0a2e01d6b19a9384cb6f1"
+    },
+    {
+      "id": "12",
+      "title": "Brother",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "All Is One",
+      "year": 2013,
+      "isSoldOut": true,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273bc44553f1ae3c1d22925e372"
+    },
+    {
+      "id": "13",
+      "title": "The City Holds My Heart",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "(EP)",
+      "year": 2018,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273fdf4e132227fa498e1688af9"
+    },
+    {
+      "id": "14",
+      "title": "Ya Hep Ya Hiç",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut commodo elementum velit et volutpat. Nunc ut vulputate leo. Duis et lobortis urna. Praesent semper justo risus, in laoreet arcu posuere id. Sed ut sem pharetra, facilisis justo id, ullamcorper justo. Aliquam rutrum orci erat, eget fermentum turpis faucibus vitae. Curabitur semper scelerisque consequat. Aliquam massa neque, varius eu lectus a, facilisis vehicula lectus. Mauris id elit nulla. Suspendisse potenti. Vivamus volutpat lobortis enim, vel pretium tellus feugiat non. Pellentesque ac magna ligula. Integer porttitor sapien nec venenatis consectetur.",
+      "album": "Od",
+      "year": 2013,
+      "isSoldOut": false,
+      "imageUrl": "https://i.scdn.co/image/ab67616d0000b273379476dcb16633eb518e4aa4"
+    }
+  ]

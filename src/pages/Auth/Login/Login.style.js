@@ -1,0 +1,72 @@
+import { StyleSheet } from "react-native";
+
+export default StyleSheet.create({
+    container:{
+        flex:1,
+    },
+    body_container:{
+        flex:1,
+        justifyContent:"center",
+        backgroundColor:"#F0E9D2",
+        padding:15
+    },
+    text_input_container:{
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+        marginVertical:5,
+    },
+    text:{
+        flex:2,
+        fontSize:14,
+        color:"#1B2430",
+        fontWeight:"bold"
+    },
+    text_input:{
+        flex:6,
+        backgroundColor:"white",
+        padding:10,
+        borderRadius:10,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    btns_container:{
+        flexDirection:"row",
+        justifyContent:"flex-end",
+        padding:5,
+    },
+    btn_login:{
+        alignItems:"center",
+        backgroundColor: "#678983",
+        padding:5,
+        paddingHorizontal:20,
+        margin:5,
+        borderRadius:8,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    btn_login_text:{
+        color:"#1B2430",
+        fontWeight:"bold",
+        fontSize: 15,
+        padding:5,
+    },
+    btn_guest:{
+        backgroundColor: "#1B2430",
+        padding:10
+    },
+    btn_register:{
+        marginTop:10,
+        alignItems:"center",
+    },
+    btn_register_text:{
+        color:"#395B64"
+    },
+    header:{
+        color:"#1B2430",
+        margin:40,
+        fontSize:40,
+        textAlign:"center",
+        fontWeight:"bold"
+    }
+});

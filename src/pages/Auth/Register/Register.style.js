@@ -1,0 +1,84 @@
+import { StyleSheet } from "react-native";
+export default StyleSheet.create({
+    container:{
+        flex:1,
+    },
+    body_container:{
+        flex:1,
+        justifyContent:"center",
+        backgroundColor:"#F0E9D2",
+        padding:30
+    },
+    text_input_container:{
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+        margin:5,
+    },
+    text:{
+        flex:1,
+        fontSize:15,
+        color:"#1B2430",
+        fontWeight:"bold"
+    },
+    text_input:{
+        flex:4,
+        backgroundColor:"white",
+        padding:10,
+        borderRadius:10,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    btns_container:{
+        flexDirection:"row",
+        justifyContent:"center",
+        padding:5,
+    },
+    btn_register:{
+        alignItems:"center",
+        backgroundColor: "#678983",
+        padding:5,
+        paddingHorizontal:20,
+        margin:5,
+        borderRadius:8,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    btn_register_text:{
+        color:"#1B2430",
+        fontWeight:"bold",
+        fontSize: 15,
+        padding:5,
+    },
+    btn_guest:{
+        backgroundColor: "#1B2430",
+        padding:10
+    },
+    btn_login:{
+        marginTop:10,
+        alignItems:"center",
+    },
+    btn_login_text:{
+        color:"#395B64"
+    },
+    checkbox_container:{
+        margin:5,
+        flexDirection:"row",
+        alignContent:"center",
+        justifyContent:"flex-end",
+    },
+    text_checkbox:{
+        fontSize:12,
+        margin:5,
+        color:"#395B64"
+    },
+    checkbox_show_password:{
+
+    },
+    header:{
+        margin:40,
+        fontSize:40,
+        textAlign:"center",
+        fontWeight:"bold"
+    }
+});
