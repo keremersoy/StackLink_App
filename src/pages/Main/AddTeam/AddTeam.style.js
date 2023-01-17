@@ -1,0 +1,58 @@
+import { StyleSheet } from "react-native";
+export default StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:"#F0E9D2"
+    },
+    inner_container:{
+        flex:1,
+        margin:5,
+        justifyContent:"center"
+    },
+    body:{
+    },
+    top:{
+      fontSize:40,
+      padding:20,
+      fontWeight:"bold",
+      textAlign:"center",
+      borderBottomWidth:1
+    },
+    input_container:{
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+        marginVertical:5,
+        marginTop:15,
+    },    
+    text_input:{
+        flex:10,
+        backgroundColor:"white",
+        padding:10,
+        borderRadius:10,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    content_container:{
+        justifyContent:"center",
+        alignItems:"center",
+        flexDirection:"row",
+        marginVertical:5,
+    },  
+    btn_container:{
+        alignItems:"center",
+        backgroundColor: "#678983",
+        padding:5,
+        paddingHorizontal:20,
+        margin:5,
+        borderRadius:8,
+        borderColor:"#E6DDC4",
+        borderWidth:2,
+    },
+    btn_text:{
+        color:"#1B2430",
+        fontWeight:"bold",
+        fontSize: 15,
+        padding:5,
+    }
+});

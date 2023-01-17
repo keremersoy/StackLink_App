@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import Styles from './Home.style.js';
 import Post from '../../../components/Post';
-//import datas from "../../../temp/datas.json"
 import api from '../../../api.js';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -34,7 +33,7 @@ const Home = () => {
   }
   return (
     <View style={Styles.container}>
-      <FlatList keyExtractor={keyExtractor} data={questionList} renderItem={renderItem} />
+      <FlatList keyExtractor={keyExtractor} data={questionList.reverse()} renderItem={renderItem}/>
     </View>
   );
 };
