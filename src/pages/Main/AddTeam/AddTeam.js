@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 
 const Team = () => {
   const token = useSelector(state => state.user.token);
+  const userId = useSelector(state => state.user.userId);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -15,8 +16,7 @@ const Team = () => {
     api
       .post(
         '/team/add',
-        //TODO:add user id
-        {title: title, content: content},
+        {title: title, content: content, ownerId: userId},
         {
           headers: {
             Authorization: 'bearer ' + token,

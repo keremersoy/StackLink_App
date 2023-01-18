@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 
 const Question = () => {
   const token = useSelector(state => state.user.token);
+  const userId = useSelector(state => state.user.userId);
 
   const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
@@ -16,8 +17,7 @@ const Question = () => {
     api
       .post(
         '/question/add',
-        //TODO:add user id
-        {img: img, title: title, content: content},
+        {img: img, title: title, content: content, userId: userId},
         {
           headers: {
             Authorization: 'bearer ' + token,

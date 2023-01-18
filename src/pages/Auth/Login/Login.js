@@ -13,9 +13,14 @@ const Login = ({navigation}) => {
   const click_login = () => {
     api
       .post('/auth/login', {username: username, password: password})
-      .then(response => {
+      .then((response) => {
         if (response.status == 200) {
-          dispatch(login(String(response.data.accessToken) || ''));
+          const info={
+            accessToken:String(response.data.accessToken)||'',
+            userId:String(response.data.userId)||''
+          }
+          dispatch(login( info));
+
           navigation.replace('Menu');//usenavigation
         }
       })
