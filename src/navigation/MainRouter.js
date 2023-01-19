@@ -31,7 +31,8 @@ const MainRouter = () => {
         
         tabBarActiveTintColor: '#395B64',
         tabBarInactiveTintColor: '#D1D1D1',
-        headerShown:false
+        headerShown:false,
+        tabBarShowLabel:false
       })}
 
       >

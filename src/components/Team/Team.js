@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text, TouchableOpacity} from 'react-native';
+import {View,Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./Team.style";
 
@@ -13,9 +13,7 @@ const Team = ({item}) => {
           </View>
         </View>
         <View style={styles.members_num_container}>
-          <TouchableOpacity>
             <Icon name="people-sharp" size={25}></Icon>
-          </TouchableOpacity>
           <Text>{item.members_num}</Text>
         </View>
       </View>

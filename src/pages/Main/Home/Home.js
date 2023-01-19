@@ -30,8 +30,8 @@ const Home = ({navigation}) => {
       });
   }, []);
   const renderItem = ({item}) => {
-    return (//}
-      <TouchableHighlight onPress={()=>navigation.navigate("QuestionDetail",{questionId:item._id})}>
+    return (
+      <TouchableHighlight onPress={()=>navigation.navigate("QuestionDetail",{question:item})}>
         <Post item={item} />
       </TouchableHighlight>
     );

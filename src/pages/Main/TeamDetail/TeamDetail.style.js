@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flex: 1,
     margin: 8,
   },
-  question_container: {
+  team_container: {
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 5,
@@ -46,52 +46,39 @@ export default StyleSheet.create({
     textAlign: 'left',
     color: '#1B2430',
   },
-  answer_container: {
+  persons_container: {
     flex: 1,
-    marginHorizontal:3,
+    marginHorizontal: 3,
     marginTop: 5,
     borderRadius: 5,
     borderWidth: 1,
   },
-  answer_title_container: {
+  persons_title_container: {
+    flexDirection:"row",
+    justifyContent:'space-between',
     backgroundColor: '#D1D1D1',
     borderTopStartRadius:5,
     borderTopEndRadius:5,
     borderBottomWidth:1,
   },
-  answer_title: {
+  persons_title: {
     fontSize: 15,
     padding: 5,
     textAlign: 'left',
-    color: '#1B2430',
+    color: 'black',
   },
   reply_container: {
     backgroundColor: 'white',
+    
   },
-  send_reply_container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 8,
-  },
-  input_container: {
-    flex: 1,
-    flexDirection: 'row',
-    marginVertical: 5,
-    marginTop: 5,
-  },
-  text_input: {
-    flex: 1,
-    backgroundColor: 'white',
+  btn_join: {
+    flexDirection:"row",
+    justifyContent:"flex-start",
+    alignItems:"center",
+    backgroundColor: '#f0f0f0',
     padding: 10,
-    borderRadius: 10,
-    borderColor: '#E6DDC4',
-    borderWidth: 2,
-  },
-  btn_send: {
-    marginLeft:5,
-    backgroundColor: '#678983',
-    padding: 10,
-    borderRadius:15,
+    borderRadius: 5,
+    borderTopWidth:0.5,
+    borderTopColor:'#a0a0a0',
   },
 });

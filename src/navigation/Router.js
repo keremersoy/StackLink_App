@@ -4,6 +4,7 @@ import LoginPage from '../pages/Auth/Login';
 import RegisterPage from '../pages/Auth/Register';
 import MenuRouter from './MenuRouter';
 import QuestionDetailPage from '../pages/Main/QuestionDetail';
+import TeamDetailPage from '../pages/Main/TeamDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const Router = () => {
       <Stack.Screen name="Register" component={RegisterPage} />
       <Stack.Screen name="Menu" component={MenuRouter} />
       <Stack.Screen name='QuestionDetail' component={QuestionDetailPage}/>
+      <Stack.Screen name='TeamDetail' component={TeamDetailPage}/>
     </Stack.Navigator>
   );
 };

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, TextInput, FlatList,TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import Style from './QuestionDetail.style';
 import api from '../../../api.js';
 import {useSelector} from 'react-redux';
@@ -8,35 +7,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Reply from '../../../components/Reply';
 
 const QuestionDetail = props => {
-  const {questionId} = props.route.params;
+  const {question} = props.route.params;
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
 
-  const [img, setImg] = useState('');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [img, setImg] = useState(question.img);
+  const [title, setTitle] = useState(question.title);
+  const [content, setContent] = useState(question.content);
   const [replyList, setReplyList] = useState([]);
   const [reply, setReply] = useState('');
 
   useEffect(() => {
     api
-      .get('/question/get/' + questionId, {
-        headers: {
-          Authorization: 'bearer ' + token,
-        },
-      })
-      .then(response => {
-        if (response.status == 200 && response.data.success) {
-          setImg(String(response.data.data[0].img));
-          setTitle(String(response.data.data[0].title));
-          setContent(String(response.data.data[0].content));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    api
-      .get('reply/get/' + questionId, {
+      .get('reply/get/' + question._id, {
         headers: {
           Authorization: 'bearer ' + token,
         },
@@ -61,13 +44,12 @@ const QuestionDetail = props => {
       </View>
     );
   };
-
   const send_reply = () => {
-    console.log(userId,"-",questionId,token,reply);
+    console.log(userId,"-",question._id,token,reply);
     api
       .post(
         'reply/add',
-        {content: reply, userId: userId, parentId: questionId},
+        {content: reply, userId: userId, parentId: question._id},
         {
           headers: {
             Authorization: 'bearer ' + token,
@@ -76,8 +58,8 @@ const QuestionDetail = props => {
       )
       .then(response => {
         if (response.status == 200 && response.data.success) {
-          //setReplyList(replyList.concat(response.data.data));
-          console.log(replyList.concat(response.data.data));
+          setReplyList(replyList.concat(response.data.data));
+          setReply("");
         }
       })
       .catch(err => {
@@ -113,6 +95,7 @@ const QuestionDetail = props => {
             <TextInput
               style={Style.text_input}
               placeholder="Cevap"
+              value={reply}
               onChangeText={text => setReply(text)}
             />
           </View>
