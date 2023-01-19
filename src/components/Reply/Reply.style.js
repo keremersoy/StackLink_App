@@ -1,28 +1,29 @@
 import { StyleSheet } from "react-native";
+
 export default StyleSheet.create({
-    container:{
+    outer_container:{
         marginHorizontal:10,
         marginVertical:5,
-        padding:14,
-        flexDirection:"row",
         backgroundColor:"#F1F1F1",
+        padding:14,
         justifyContent:"center",
-        alignItems:"center",
+        alignItems:"flex-end",
         borderRadius:10,
         borderWidth:1,
         borderColor:"#D1D1D1"
     },
+    container:{
+        justifyContent:"flex-start",
+        alignItems:"flex-start"
+    },
 
-    members_num_container:{
-        margin:0,
-        justifyContent:"center",
+    rating_container:{
         alignItems:"center",
+        justifyContent:"center",
     },
 
     body_container:{
         flexDirection:"row",
-        padding:10,
-        flex: 1,
         justifyContent:"flex-start",
         alignItems:"center"
     },
@@ -30,6 +31,11 @@ export default StyleSheet.create({
     content_container:{
         flex:1,
         marginHorizontal:10,
+    },
+
+    image:{
+        width:100,
+        height:100,
     },
     
     title:{
@@ -39,5 +45,8 @@ export default StyleSheet.create({
     
     content:{
         
+    },
+    date:{
+        textAlign:"right"
     }
 });

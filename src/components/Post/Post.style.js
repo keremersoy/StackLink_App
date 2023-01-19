@@ -7,7 +7,10 @@ export default StyleSheet.create({
         backgroundColor:"#F1F1F1",
         padding:14,
         justifyContent:"center",
-        alignItems:"flex-end"
+        alignItems:"flex-end",
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:"#D1D1D1"
     },
     container:{
         flexDirection:"row",

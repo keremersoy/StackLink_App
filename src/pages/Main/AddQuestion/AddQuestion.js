@@ -4,6 +4,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Style from './AddQuestion.style.js';
 import api from '../../../api.js';
 import {useSelector} from 'react-redux';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const Question = () => {
   const token = useSelector(state => state.user.token);
@@ -34,12 +35,26 @@ const Question = () => {
       });
   };
 
+  /*
+  const chooseImage=()=>{
+    const options={mediaType:"image"}
+    launchImageLibrary(options,(response)=>{
+      if(!media.didCancel){
+      }
+    })
+  }*/
+  //TODO: Fotoğraf işlemleri
+  
+
+
   return (
     <View style={Style.container}>
       <View style={Style.inner_container}>
         <View style={Style.body}>
           <Text style={Style.top}>Bir Soru Paylaş</Text>
-          <Image style={Style.image} />
+          <TouchableOpacity >
+            <Image style={Style.image} />
+          </TouchableOpacity>
           <View style={Style.input_container}>
             <TextInput
               style={Style.text_input}

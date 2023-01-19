@@ -5,6 +5,7 @@ import styles from './Post.style';
 
 const Post = ({item}) => {
   const [score, setscore] = useState(item.score);
+
   return (
     <View style={styles.outer_container}>
       <View style={styles.container}>
