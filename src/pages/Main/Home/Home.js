@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import Styles from './Home.style.js';
 import Post from '../../../components/Post';
+import Header from '../../../components/Header';
 import api from '../../../api.js';
 import {useDispatch, useSelector} from 'react-redux';
 import {TouchableHighlight} from 'react-native-gesture-handler';
@@ -38,6 +39,7 @@ const Home = ({navigation}) => {
   };
   return (
     <View style={Styles.container}>
+      <Header navigation={navigation} type={1}/>
       <FlatList
         keyExtractor={keyExtractor}
         data={questionList.reverse()}

@@ -3,7 +3,6 @@ import {View, Text, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Styles from './Register.style.js';
 import api from '../../../api.js';
-import {login} from '../../../redux/user';
 
 const Register = ({navigation}) => {
   const [name, setName] = useState('');

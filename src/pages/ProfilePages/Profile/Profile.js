@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
 import Post from '../../../components/Post';
 import Team from '../../../components/Team';
+import Header from '../../../components/Header';
 import {TouchableHighlight} from 'react-native-gesture-handler';
 
 const Profile = ({navigation}) => {
@@ -87,9 +88,12 @@ const Profile = ({navigation}) => {
     );
   };
 
-  const goToEditPage = () => {};
+  const goToEditPage = () => {
+    navigation.navigate("EditProfile",{user:user});
+  };
   return (
     <View style={styles.container}>
+    <Header navigation={navigation} type={0}/>
       <View style={styles.info_container}>
         <View style={styles.top_info_container}>
           <Image style={styles.image} />

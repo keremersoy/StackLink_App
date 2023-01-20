@@ -12,9 +12,6 @@ const MenuRouter = () => {
       initialRouteName="Main"
       screenOptions={{headerShown: false}}>
       <Drawer.Screen name="Main" component={MainRouter} />
-      {
-        //TODO:profil sayfası buraya eklenecek (root/src/pages içerisinde oluştur)
-      }
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Log out" component={Login} />
 

@@ -5,6 +5,7 @@ import api from '../../../api.js';
 import {useDispatch, useSelector} from 'react-redux';
 import Team from '../../../components/Team';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+import Header from '../../../components/Header';
 
 const Teams = ({navigation}) => {
   const token = useSelector(state => state.user.token);
@@ -39,6 +40,7 @@ const Teams = ({navigation}) => {
   };
   return (
     <View style={Styles.container}>
+    <Header navigation={navigation} type={1}/>
       <FlatList
         keyExtractor={keyExtractor}
         data={teamList.reverse()}
