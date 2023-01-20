@@ -13,11 +13,12 @@ const Register = ({navigation}) => {
   const [isShowPassword, setisShowPassword] = useState(false);
 
   const click_register = () => {
+    console.log(name,username,password,email);
     api
       .post('/auth/register', {name:name,username: username, password: password,email:email})
       .then(response => {
         if (response.status == 200) {
-          navigation.navigate('Login');
+          navigation.replace('Login');
         }
       })
       .catch(err => {
@@ -25,7 +26,7 @@ const Register = ({navigation}) => {
       });
   };
   const click_login = () => {
-    navigation.navigate('Login');
+    navigation.replace('Login');
   };
 
   return (

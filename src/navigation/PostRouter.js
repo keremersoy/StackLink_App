@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import questionPage from '../pages/Main/AddQuestion/Question';
-import teamPage from '../pages/Main/AddTeam/Team';
+import questionPage from '../pages/Main/AddQuestion/AddQuestion';
+import teamPage from '../pages/Main/AddTeam/AddTeam';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -10,7 +10,7 @@ const PostRouter=() => {
       <Tab.Screen name="Soru" component={questionPage} />
       <Tab.Screen name="Ekip" component={teamPage} />
     </Tab.Navigator>
-  );
+  );S
 }
 
 export default PostRouter;

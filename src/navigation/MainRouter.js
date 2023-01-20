@@ -30,8 +30,9 @@ const MainRouter = () => {
         },
         
         tabBarActiveTintColor: '#395B64',
-        tabBarInactiveTintColor: '#E6DDC4',
-        headerShown:false
+        tabBarInactiveTintColor: '#D1D1D1',
+        headerShown:false,
+        tabBarShowLabel:false
       })}
 
       >

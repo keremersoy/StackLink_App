@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import Styles from './Home.style.js';
 import Post from '../../../components/Post';
-//import datas from "../../../temp/datas.json"
 import api from '../../../api.js';
 import {useDispatch, useSelector} from 'react-redux';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const token = useSelector(state => state.user.token);
   const [questionList, setQuestionList] = useState([]);
 
   const keyExtractor = (item, index) => {
-    return item._id || index * Math.random()
-  }
+    return item._id || index * Math.random();
+  };
   useEffect(() => {
     api
       .get('/question/get', {
@@ -22,7 +22,7 @@ const Home = () => {
       })
       .then(response => {
         if (response.status == 200 && response.data.success) {
-            setQuestionList(response.data.data);
+          setQuestionList(response.data.data);
         }
       })
       .catch(err => {
@@ -30,11 +30,19 @@ const Home = () => {
       });
   }, []);
   const renderItem = ({item}) => {
-    return <Post  item={item}/>
-  }
+    return (
+      <TouchableHighlight onPress={()=>navigation.navigate("QuestionDetail",{question:item})}>
+        <Post item={item} />
+      </TouchableHighlight>
+    );
+  };
   return (
     <View style={Styles.container}>
-      <FlatList keyExtractor={keyExtractor} data={questionList} renderItem={renderItem} />
+      <FlatList
+        keyExtractor={keyExtractor}
+        data={questionList.reverse()}
+        renderItem={renderItem}
+      />
     </View>
   );
 };
