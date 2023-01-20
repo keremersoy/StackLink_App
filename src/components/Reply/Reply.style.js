@@ -43,7 +43,17 @@ export default StyleSheet.create({
     fontSize: 20,
   },
 
-  content: {},
+  content: {
+    color: '#1B2430',
+  },
+  cancel: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    paddingHorizontal: 2,
+    borderRadius: 5,
+    marginRight:10,
+  },
   header_container: {
     flexDirection: 'row',
   },

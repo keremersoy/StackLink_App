@@ -7,6 +7,7 @@ import api from '../../api.js';
 
 const Reply = ({item}) => {
   const token = useSelector(state => state.user.token);
+  const userId = useSelector(state => state.user.userId);
   const [score, setscore] = useState(item.score);
   const [userName, setUserName] = useState('');
   useEffect(() => {
@@ -25,6 +26,23 @@ const Reply = ({item}) => {
         console.log(err);
       });
   }, []);
+
+  const remove_reply=()=>{
+    api
+    .delete('reply/delete/' + item._id, {
+      headers: {
+        Authorization: 'bearer ' + token,
+      },
+    })
+    .then(response => {
+      if (response.status == 200 && response.data.success) {
+        console.log(response.data.data);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
   return (
     <View style={styles.outer_container}>
       <View style={styles.header_container}>
@@ -45,6 +63,17 @@ const Reply = ({item}) => {
           <View style={styles.content_container}>
             <Text style={styles.content}>{item.content}</Text>
           </View>
+          {
+          //ekibi sil(kurucu)
+          userId == item.userId? (
+            <TouchableOpacity style={styles.cancel} onPress={remove_reply}>
+              <Icon name="trash" color={'maroon'} size={35} />
+              <Text style={styles.content}>Cevabı Sil</Text>
+            </TouchableOpacity>
+          ) : (
+            ''
+          )
+        }
         </View>
       </View>
     </View>

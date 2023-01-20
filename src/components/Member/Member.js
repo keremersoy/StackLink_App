@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Member.style';
 import api from '../../api';
 
-const Reply = ({item, ownerId,teamId}) => {
+const Reply = ({item, ownerId, teamId}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
   const [user, setUser] = useState(null);
@@ -26,42 +26,50 @@ const Reply = ({item, ownerId,teamId}) => {
         console.log(err);
       });
   }, []);
-  
-  const join=()=>{
-    api
-    .put('team/member/join',{user_id:item.userId,team_id:teamId}, {
-      headers: {
-        Authorization: 'bearer ' + token,
-      },
-    })
-    .then(response => {
-      if (response.status == 200 && response.data.success) {
-        const member=response.data.data[0]
-        console.log(member);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }
 
-  const kick_out=()=>{
+  const join = () => {
     api
-      .put('team/member/remove',{user_id:item.userId,team_id:teamId}, {
-        headers: {
-          Authorization: 'bearer ' + token,
+      .put(
+        'team/member/join',
+        {user_id: item.userId, team_id: teamId},
+        {
+          headers: {
+            Authorization: 'bearer ' + token,
+          },
         },
-      })
+      )
       .then(response => {
         if (response.status == 200 && response.data.success) {
-          const member=response.data.data[0]
+          const member = response.data.data[0];
           console.log(member);
         }
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
+
+  const kick_out = () => {
+    api
+      .put(
+        'team/member/remove',
+        {user_id: item.userId, team_id: teamId},
+        {
+          headers: {
+            Authorization: 'bearer ' + token,
+          },
+        },
+      )
+      .then(response => {
+        if (response.status == 200 && response.data.success) {
+          const member = response.data.data[0];
+          console.log(member);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.body_container}>
@@ -70,18 +78,21 @@ const Reply = ({item, ownerId,teamId}) => {
           <Text style={styles.username}>@{user?.username}</Text>
         </View>
 
-        {(item.status == '0')&&(userId!=ownerId) ? (
-          <View style={styles.lead}>
-            <Icon
-              name="information-circle-outline"
-              color={'gray'}
-              size={35}
-            />
-            <Text style={styles.info_text}>Beklemede</Text>
-          </View>
-        ) : (
-          ''
-        )}
+        {
+          //istek beklemede
+          item.status == '0' && userId != ownerId ? (
+            <View style={styles.lead}>
+              <Icon
+                name="information-circle-outline"
+                color={'gray'}
+                size={35}
+              />
+              <Text style={styles.info_text}>Beklemede</Text>
+            </View>
+          ) : (
+            ''
+          )
+        }
 
         {
           //ayrıl butonu
@@ -122,7 +133,7 @@ const Reply = ({item, ownerId,teamId}) => {
         }
         {
           //kişiyi çıkart(kurucu)
-          (userId == ownerId) && (item.status != '2') && (item.status != '0')? (
+          userId == ownerId && item.status != '2' && item.status != '0' ? (
             <TouchableOpacity style={styles.cancel} onPress={kick_out}>
               <Icon name="close-circle" color={'maroon'} size={35} />
               <Text style={styles.info_text}>Kişiyi Çıkart</Text>
