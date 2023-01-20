@@ -14,8 +14,6 @@ export default function Profile() {
                 <View style={styles.top_container}>
                     <Image
                         style={styles.Image}
-                        source={require('../../../assets/kartoncu.jpg')}
-
                     />
                     <Text style={styles.usernameText}>
                         USERNAME

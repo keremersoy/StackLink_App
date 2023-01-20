@@ -21,6 +21,7 @@ export default StyleSheet.create({
         borderRadius: 70,
         width: Dimensions.get("window").width / 2.6,
         height: Dimensions.get("window").height / 5,
+        backgroundColor:"gray"
 
     },
     YaziView: {
