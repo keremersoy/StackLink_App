@@ -25,12 +25,12 @@ const Profile = ({navigation}) => {
 
   const getQuestions = () => {
     dispatch(fetchQuestionList(token));
-    setList(questions.list.filter(q => q.userId == user.data[0]._id));
+    setList(questions.list.filter(q => q.userId == user.data[0]?._id));
     setListName('Sorular');
   };
   const getTeams = () => {
     dispatch(fetchTeamList(token));
-    setList(teams.list.filter(q => q.ownerId == user.data[0]._id));
+    setList(teams.list.filter(q => q.ownerId == user.data[0]?._id));
     setListName('Ekipler');
   };
   useEffect(() => {
@@ -43,8 +43,8 @@ const Profile = ({navigation}) => {
 
   useEffect(() => {
     listName == 'Sorular'
-      ? setList(questions.list.filter(q => q.userId == user.data[0]._id))
-      : setList(teams.list.filter(q => q.ownerId == user.data[0]._id));
+      ? setList(questions.list.filter(q => q.userId == user.data[0]?._id))
+      : setList(teams.list.filter(q => q.ownerId == user.data[0]?._id));
   }, [questions, teams]);
 
   const keyExtractor = (item, index) => {
@@ -75,7 +75,7 @@ const Profile = ({navigation}) => {
         <View style={styles.top_info_container}>
           <Image style={styles.image} />
           <View style={styles.username_container}>
-            <Text style={styles.username_text}>{user?.data[0].username}</Text>
+            <Text style={styles.username_text}>{user?.data[0]?.username}</Text>
             <TouchableOpacity
               style={styles.btn_edit_container}
               onPress={goToEditPage}>
@@ -86,10 +86,10 @@ const Profile = ({navigation}) => {
 
         <View style={styles.info_container}>
           <View style={styles.bottom_info_container}>
-            <Text style={styles.txt_name}>{user?.data[0].name}</Text>
-            <Text style={styles.txt_info}>EMAİL: {user?.data[0].email}</Text>
-            {user?.data[0].github != '' ? (
-              <Text style={styles.txt_info}>GİTHUB: {user?.data[0].github} </Text>
+            <Text style={styles.txt_name}>{user?.data[0]?.name}</Text>
+            <Text style={styles.txt_info}>EMAİL: {user?.data[0]?.email}</Text>
+            {user?.data[0]?.github != '' ? (
+              <Text style={styles.txt_info}>GİTHUB: {user?.data[0]?.github} </Text>
             ) : (
               ''
             )}

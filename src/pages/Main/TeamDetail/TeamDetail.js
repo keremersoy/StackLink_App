@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
 import Style from './TeamDetail.style';
 import api from '../../../api.js';
 import {useSelector, useDispatch} from 'react-redux';
@@ -8,20 +7,25 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Member from '../../../components/Member';
 import {fetchMemberList} from '../../../redux/member';
 import Header from '../../../components/Header';
+import UserInfo from '../../../components/UserInfo';
 
-const TeamDetail = (props) => {
+const TeamDetail = props => {
   const {team} = props.route.params;
   const {navigation} = props;
-  
+
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
+  const persons = useSelector(state => state.member.members);
 
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(team.title);
   const [content, setContent] = useState(team.content);
   const [members, setMembers] = useState(team.members_num);
-  const persons = useSelector(state => state.member.members);
+
+  const [isShowInfo, setIsShowInfo] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState('');
 
   const [isMember, setIsMember] = useState(false);
   const [isOwner, setIsOwner] = useState(team.ownerId == userId);
@@ -46,9 +50,31 @@ const TeamDetail = (props) => {
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
   };
+
+  const getUserInfo = selected => {
+    setSelectedUserId(selected.userId);
+    setIsShowInfo(!isShowInfo);
+  };
+  useEffect(() => {
+    api
+      .get('user/get/' + selectedUserId, {
+        headers: {
+          Authorization: 'bearer ' + token,
+        },
+      })
+      .then(response => {
+        if (response.status == 200 && response.data.success) {
+          setSelectedUser(response.data.data[0]);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [selectedUserId]);
+
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity onPress={()=>{navigation.navigate("Profile",{user_id:item.userId})}}>
+      <TouchableOpacity onPress={() => getUserInfo(item)}>
         <View>
           <Member item={item} ownerId={team.ownerId} teamId={team._id} />
         </View>
@@ -99,7 +125,7 @@ const TeamDetail = (props) => {
           <FlatList
             style={Style.reply_container}
             keyExtractor={keyExtractor}
-            data={persons.list}
+            data={persons.list.filter(filterPersons)}
             renderItem={renderItem}
           />
           {isOwner || isMember ? (
@@ -111,6 +137,7 @@ const TeamDetail = (props) => {
             </TouchableOpacity>
           )}
         </View>
+        {isShowInfo && <UserInfo user={selectedUser} />}
       </View>
     </View>
   );
