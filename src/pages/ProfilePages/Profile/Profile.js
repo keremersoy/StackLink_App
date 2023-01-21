@@ -1,76 +1,51 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, Button, TouchableOpacity} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './Profile.Style';
-import api from '../../../api';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
 import Post from '../../../components/Post';
 import Team from '../../../components/Team';
 import Header from '../../../components/Header';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+import {fetchQuestionList} from '../../../redux/question';
+import {fetchTeamList} from '../../../redux/team';
+import {fetchUserData} from '../../../redux/user';
 
 const Profile = ({navigation}) => {
   const token = useSelector(state => state.user.token);
-  const userId = useSelector(state => state.user.userId);
+  const questions = useSelector(state => state.question.questions);
+  const teams = useSelector(state => state.team.teams);
+  const user = useSelector(state => state.user.user);
 
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+
   const [list, setList] = useState([]);
   const [listName, setListName] = useState('Sorular');
 
   const getQuestions = () => {
-    api
-      .get('/user/get/questions/' + userId, {
-        headers: {
-          Authorization: 'bearer ' + token,
-        },
-      })
-      .then(response => {
-        if (response.status == 200 && response.data.success) {
-          setList(response.data.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    dispatch(fetchQuestionList(token));
+    setList(questions.list.filter(q => q.userId == user.data[0]._id));
     setListName('Sorular');
   };
   const getTeams = () => {
-    api
-      .get('/user/get/teams/' + userId, {
-        headers: {
-          Authorization: 'bearer ' + token,
-        },
-      })
-      .then(response => {
-        if (response.status == 200 && response.data.success) {
-          setList(response.data.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    dispatch(fetchTeamList(token));
+    setList(teams.list.filter(q => q.ownerId == user.data[0]._id));
     setListName('Ekipler');
   };
   useEffect(() => {
-    api
-      .get('user/get/' + userId, {
-        headers: {
-          Authorization: 'bearer ' + token,
-        },
-      })
-      .then(response => {
-        if (response.status == 200 && response.data.success) {
-          setUser(response.data.data[0]);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    dispatch(fetchUserData(token))
   }, []);
+
   useEffect(() => {
     getQuestions();
   }, [user]);
+
+  useEffect(() => {
+    listName == 'Sorular'
+      ? setList(questions.list.filter(q => q.userId == user.data[0]._id))
+      : setList(teams.list.filter(q => q.ownerId == user.data[0]._id));
+  }, [questions, teams]);
 
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
@@ -78,27 +53,29 @@ const Profile = ({navigation}) => {
 
   const renderItem = ({item}) => {
     return listName == 'Sorular' ? (
-      <TouchableHighlight onPress={()=>navigation.navigate('QuestionDetail', {question: item})}>
+      <TouchableHighlight
+        onPress={() => navigation.navigate('QuestionDetail', {question: item})}>
         <Post item={item} />
       </TouchableHighlight>
     ) : (
-      <TouchableHighlight onPress={()=>navigation.navigate('TeamDetail', {team: item})}>
+      <TouchableHighlight
+        onPress={() => navigation.navigate('TeamDetail', {team: item})}>
         <Team item={item} />
       </TouchableHighlight>
     );
   };
 
   const goToEditPage = () => {
-    navigation.navigate("EditProfile",{user:user});
+    navigation.navigate('EditProfile', {user: user.data[0]});
   };
   return (
     <View style={styles.container}>
-    <Header navigation={navigation} type={0}/>
+      <Header navigation={navigation} type={0} />
       <View style={styles.info_container}>
         <View style={styles.top_info_container}>
           <Image style={styles.image} />
           <View style={styles.username_container}>
-            <Text style={styles.username_text}>{user?.username}</Text>
+            <Text style={styles.username_text}>{user?.data[0].username}</Text>
             <TouchableOpacity
               style={styles.btn_edit_container}
               onPress={goToEditPage}>
@@ -109,11 +86,13 @@ const Profile = ({navigation}) => {
 
         <View style={styles.info_container}>
           <View style={styles.bottom_info_container}>
-            <Text style={styles.txt_name}>{user?.name}</Text>
-            <Text style={styles.txt_info}>EMAİL: {user?.email}</Text>
-            {user?.github!=""?
-            <Text style={styles.txt_info}>GİTHUB: </Text>:
-            ""}
+            <Text style={styles.txt_name}>{user?.data[0].name}</Text>
+            <Text style={styles.txt_info}>EMAİL: {user?.data[0].email}</Text>
+            {user?.data[0].github != '' ? (
+              <Text style={styles.txt_info}>GİTHUB: {user?.data[0].github} </Text>
+            ) : (
+              ''
+            )}
           </View>
         </View>
       </View>

@@ -1,18 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Member.style';
 import api from '../../api';
+import {fetchMemberList} from '../../redux/member';
 
 const Reply = ({item, ownerId, teamId}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
   const [user, setUser] = useState(null);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     api
-      .get('user/get/' + item.userId, {
+      .get('user/get/'+item.userId , {
         headers: {
           Authorization: 'bearer ' + token,
         },
@@ -40,8 +43,7 @@ const Reply = ({item, ownerId, teamId}) => {
       )
       .then(response => {
         if (response.status == 200 && response.data.success) {
-          const member = response.data.data[0];
-          console.log(member);
+          dispatch(fetchMemberList({token, id: teamId}));
         }
       })
       .catch(err => {
@@ -62,8 +64,7 @@ const Reply = ({item, ownerId, teamId}) => {
       )
       .then(response => {
         if (response.status == 200 && response.data.success) {
-          const member = response.data.data[0];
-          console.log(member);
+          dispatch(fetchMemberList({token, id: teamId}));
         }
       })
       .catch(err => {

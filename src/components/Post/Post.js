@@ -1,16 +1,18 @@
 import React, {useState,useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Post.style';
 import api from '../../api.js';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-
+import {fetchQuestionList} from '../../redux/question';
 
 const Post = ({item}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
   const [score, setscore] = useState(item.score);
+
+  const dispatch = useDispatch();
 
   const remove_question=()=>{
     api
@@ -21,7 +23,7 @@ const Post = ({item}) => {
     })
     .then(response => {
       if (response.status == 200 && response.data.success) {
-        console.log(response.data.data);
+        dispatch(fetchQuestionList(token))
       }
     })
     .catch(err => {
@@ -46,10 +48,12 @@ const Post = ({item}) => {
         {
           //soruyu sil(kurucu)
           userId == item.userId ? (
-            <TouchableOpacity style={styles.cancel} onPress={remove_question}>
+            <TouchableHighlight onPress={remove_question}>
+            <View style={styles.cancel} >
               <Icon name="trash" color={'maroon'} size={35} />
               <Text style={styles.content}>Soruyu Sil</Text>
-            </TouchableOpacity>
+              </View>
+            </TouchableHighlight>
           ) : (
             ''
           )

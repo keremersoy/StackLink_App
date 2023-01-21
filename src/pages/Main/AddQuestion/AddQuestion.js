@@ -3,12 +3,15 @@ import {View, Text, Image, TextInput} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Style from './AddQuestion.style.js';
 import api from '../../../api.js';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {fetchQuestionList} from '../../../redux/question';
 
-const Question = () => {
+const Question = ({navigation}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
+
+  const dispatch = useDispatch();
 
   const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
@@ -27,7 +30,10 @@ const Question = () => {
       )
       .then(response => {
         if (response.status == 200) {
-          console.log(response.data.data);
+          setTitle("");
+          setContent("");
+          dispatch(fetchQuestionList(token))
+          navigation.navigate("Home")
         }
       })
       .catch(err => {
@@ -59,6 +65,7 @@ const Question = () => {
             <TextInput
               style={Style.text_input}
               placeholder="Başlık"
+              value={title}
               onChangeText={text => setTitle(text)}
             />
           </View>
@@ -66,6 +73,7 @@ const Question = () => {
             <TextInput
               editable
               multiline
+              value={content}
               numberOfLines={10}
               maxLength={40}
               style={Style.text_input}

@@ -3,11 +3,14 @@ import {TouchableOpacity} from 'react-native';
 import {View, Text, TextInput} from 'react-native';
 import Style from './AddTeam.style.js';
 import api from '../../../api.js';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
+import {fetchTeamList} from '../../../redux/team';
 
-const Team = () => {
+const Team = ({navigation}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
+  
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -25,7 +28,10 @@ const Team = () => {
       )
       .then(response => {
         if (response.status == 200) {
-          console.log(response.data.data);
+          setTitle("")
+          setContent("")
+          dispatch(fetchTeamList(token))
+          navigation.navigate("Teams")
         }
       })
       .catch(err => {
@@ -41,6 +47,7 @@ const Team = () => {
             <TextInput
               style={Style.text_input}
               placeholder="Başlık"
+              value={title}
               onChangeText={text => setTitle(text)}
             />
           </View>
@@ -52,6 +59,7 @@ const Team = () => {
               maxLength={40}
               style={Style.text_input}
               placeholder="Açıklama"
+              value={content}
               onChangeText={text => setContent(text)}
             />
           </View>

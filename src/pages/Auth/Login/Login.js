@@ -3,29 +3,31 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Styles from './Login.style.js';
 import api from '../../../api.js';
 import {login} from '../../../redux/user';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
 
   const click_login = () => {
+    let info = {};
     api
       .post('/auth/login', {username: username, password: password})
-      .then((response) => {
+      .then(response => {
         if (response.status == 200) {
-          const info={
-            accessToken:String(response.data.accessToken)||'',
-            userId:String(response.data.userId)||''
-          }
-          dispatch(login( info));
-
-          navigation.replace('Menu');//usenavigation
+          info = {
+            accessToken: String(response.data.accessToken) || '',
+            userId: String(response.data.userId) || '',
+          };
+          dispatch(login(info));
+          navigation.replace('Menu');
         }
       })
       .catch(err => {
         console.log(err);
+        return err;
       });
   };
 

@@ -1,12 +1,17 @@
+
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import Styles from './EditProfile.style';
 import api from '../../../api.js';
 import Header from '../../../components/Header';
+import {fetchUserData} from '../../../redux/user';
+
 //TODO: foto ekleme işlemleri
 const EditProfile = (props) => {
   const token = useSelector(state => state.user.token);
+
+  const dispatch=useDispatch();
 
   const {user} = props.route.params;
   const {navigation}=props;
@@ -40,6 +45,7 @@ const EditProfile = (props) => {
       .catch(err => {
         console.log(err);
       });
+      dispatch(fetchUserData(token))
 
   };
 

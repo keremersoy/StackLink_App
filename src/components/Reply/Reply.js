@@ -4,12 +4,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Reply.style';
 import {useDispatch, useSelector} from 'react-redux';
 import api from '../../api.js';
+import {fetchReplyList} from '../../redux/reply';
 
 const Reply = ({item}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
   const [score, setscore] = useState(item.score);
   const [userName, setUserName] = useState('');
+
+  const dispatch = useDispatch();
   useEffect(() => {
     api
       .get('user/get/' + item.userId, {
@@ -36,7 +39,7 @@ const Reply = ({item}) => {
     })
     .then(response => {
       if (response.status == 200 && response.data.success) {
-        console.log(response.data.data);
+        dispatch(fetchReplyList({token,id:item.parentId}));
       }
     })
     .catch(err => {

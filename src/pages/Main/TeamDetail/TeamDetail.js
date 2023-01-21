@@ -1,71 +1,58 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 import Style from './TeamDetail.style';
 import api from '../../../api.js';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Member from '../../../components/Member';
+import {fetchMemberList} from '../../../redux/member';
+import Header from '../../../components/Header';
 
-const TeamDetail = props => {
+const TeamDetail = (props) => {
   const {team} = props.route.params;
+  const {navigation} = props;
+  
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
+
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(team.title);
   const [content, setContent] = useState(team.content);
   const [members, setMembers] = useState(team.members_num);
-  const [personList, setPersonList] = useState([]);
+  const persons = useSelector(state => state.member.members);
 
   const [isMember, setIsMember] = useState(false);
   const [isOwner, setIsOwner] = useState(team.ownerId == userId);
 
-  const filterPersons=(person)=>{
-    if(userId==team.ownerId)
-      return (person.status>"-1")
-    if(userId==person.userId&&person.status!="-1")
-      return true;
-    return (person.status>"0")
-  }
+  const filterPersons = person => {
+    if (userId == team.ownerId) return person.status > '-1';
+    if (userId == person.userId && person.status != '-1') return true;
+    return person.status > '0';
+  };
   useEffect(() => {
     setTitle(team.title);
     setContent(team.content);
     setMembers(team.members_num);
 
-    api
-      .get('team/member/get/' + team._id, {
-        headers: {
-          Authorization: 'bearer ' + token,
-        },
-      })
-      .then(response => {
-        if (response.status == 200 && response.data.success) {
-          setPersonList(response.data.data.filter(filterPersons));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    dispatch(fetchMemberList({token, id: team._id}));
   }, []);
 
   useEffect(() => {
-    setIsMember(personList.some(person => person.userId == userId));
-  }, [personList]);
+    setIsMember(persons.list.some(person => person.userId == userId));
+  }, [persons]);
 
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
   };
   const renderItem = ({item}) => {
     return (
-      <View>
-        <Member item={item} ownerId={team.ownerId} teamId={team._id}/>
-      </View>
+      <TouchableOpacity onPress={()=>{navigation.navigate("Profile",{user_id:item.userId})}}>
+        <View>
+          <Member item={item} ownerId={team.ownerId} teamId={team._id} />
+        </View>
+      </TouchableOpacity>
     );
   };
 
@@ -83,7 +70,7 @@ const TeamDetail = props => {
         )
         .then(response => {
           if (response.status == 200 && response.data.success) {
-            setPersonList(personList.concat(response.data.data));
+            dispatch(fetchMemberList({token, id: team._id}));
           }
         })
         .catch(err => {
@@ -94,6 +81,7 @@ const TeamDetail = props => {
 
   return (
     <View style={Style.container}>
+      <Header navigation={navigation} type={0} />
       <View style={Style.inner_container}>
         <View style={Style.team_container}>
           <View style={Style.title_container}>
@@ -111,7 +99,7 @@ const TeamDetail = props => {
           <FlatList
             style={Style.reply_container}
             keyExtractor={keyExtractor}
-            data={personList}
+            data={persons.list}
             renderItem={renderItem}
           />
           {isOwner || isMember ? (
