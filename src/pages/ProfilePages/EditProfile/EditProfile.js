@@ -1,5 +1,5 @@
 
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image,ToastAndroid} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import Styles from './EditProfile.style';
@@ -39,11 +39,13 @@ const EditProfile = (props) => {
       )
       .then(response => {
         if (response.status == 200 && response.data.success) {
+          ToastAndroid.show('Düzenleme kaydedildi.', ToastAndroid.SHORT);
           navigation.goBack();
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err);        
+        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
       });
       dispatch(fetchUserData(token))
 

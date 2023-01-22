@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, Linking, TouchableOpacity, Image} from 'react-native';
+import {Text, View, Linking, TouchableOpacity, Image,ToastAndroid} from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import styles from './UserInfo.style';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -13,6 +13,7 @@ const UserInfo = ({user}) => {
   };
   const copyToClipboard = () => {
     Clipboard.setString(user?.email);
+    ToastAndroid.show('Mail kopyalandı.', ToastAndroid.SHORT);
   };
   //TODO:fotoğraf işlemleri
   return (

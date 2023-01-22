@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, CheckBox} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Styles from './Register.style.js';
 import api from '../../../api.js';
@@ -12,16 +12,16 @@ const Register = ({navigation}) => {
   const [isShowPassword, setisShowPassword] = useState(false);
 
   const click_register = () => {
-    console.log(name,username,password,email);
     api
       .post('/auth/register', {name:name,username: username, password: password,email:email})
       .then(response => {
         if (response.status == 200) {
           navigation.replace('Login');
+          ToastAndroid.show('Kayıt işlemi tamamlandı.', ToastAndroid.SHORT);
         }
       })
       .catch(err => {
-        console.log(err);
+        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
       });
   };
   const click_login = () => {

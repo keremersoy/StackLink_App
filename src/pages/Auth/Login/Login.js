@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput,ToastAndroid, TouchableOpacity} from 'react-native';
 import Styles from './Login.style.js';
 import api from '../../../api.js';
 import {login} from '../../../redux/user';
@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
         }
       })
       .catch(err => {
-        console.log(err);
+        ToastAndroid.show('Kullanıcı adınızı ve parolanızı doğru girdiğinizden emin olun.'+err, ToastAndroid.SHORT);
         return err;
       });
   };

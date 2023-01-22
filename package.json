@@ -23,6 +23,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",
+    "lottie-react-native": "^5.1.4",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-bouncy-checkbox": "^3.0.6",

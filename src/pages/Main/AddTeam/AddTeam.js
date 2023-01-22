@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput,ToastAndroid} from 'react-native';
 import Style from './AddTeam.style.js';
 import api from '../../../api.js';
 import {useSelector,useDispatch} from 'react-redux';
@@ -31,11 +31,13 @@ const Team = ({navigation}) => {
           setTitle("")
           setContent("")
           dispatch(fetchTeamList(token))
+          ToastAndroid.show('Ekip oluşturuldu.', ToastAndroid.SHORT);
           navigation.navigate("Teams")
         }
       })
       .catch(err => {
         console.log(err);
+        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
       });
   };
   return (

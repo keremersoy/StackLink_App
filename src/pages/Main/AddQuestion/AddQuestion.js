@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput} from 'react-native';
+import {View, Text, Image, TextInput,ToastAndroid} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Style from './AddQuestion.style.js';
 import api from '../../../api.js';
@@ -16,7 +16,7 @@ const Question = ({navigation}) => {
   const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
+  
   const addQuestion = () => {
     api
       .post(
@@ -33,11 +33,13 @@ const Question = ({navigation}) => {
           setTitle("");
           setContent("");
           dispatch(fetchQuestionList(token))
+          ToastAndroid.show('Sorunuz paylaşıldı.', ToastAndroid.SHORT);
           navigation.navigate("Home")
         }
       })
       .catch(err => {
         console.log(err);
+        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
       });
   };
 

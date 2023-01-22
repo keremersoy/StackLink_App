@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Member.style';
 import api from '../../api';
 import {fetchMemberList} from '../../redux/member';
+import {fetchQuestionList} from '../../redux/question';
 
 const Reply = ({item, ownerId, teamId}) => {
   const token = useSelector(state => state.user.token);
@@ -65,6 +66,7 @@ const Reply = ({item, ownerId, teamId}) => {
       .then(response => {
         if (response.status == 200 && response.data.success) {
           dispatch(fetchMemberList({token, id: teamId}));
+          dispatch(fetchQuestionList(token));
         }
       })
       .catch(err => {

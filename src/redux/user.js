@@ -17,7 +17,6 @@ export const fetchUserData = createAsyncThunk('fetchUserData',
         Authorization: 'bearer ' + token,
       },
     });
-    console.log(response.data.data);
     return response.data.data
   },
 );

@@ -91,5 +91,8 @@ export default StyleSheet.create({
     flex:1,
     borderLeftWidth:1,
     borderRightWidth:1,
+  },
+  github_container:{
+    flexDirection:"row",
   }
 });

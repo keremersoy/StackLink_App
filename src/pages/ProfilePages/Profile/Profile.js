@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, Button, TouchableOpacity} from 'react-native';
+import {View, Text, Image, Linking, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from './Profile.Style';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,6 +11,7 @@ import {TouchableHighlight} from 'react-native-gesture-handler';
 import {fetchQuestionList} from '../../../redux/question';
 import {fetchTeamList} from '../../../redux/team';
 import {fetchUserData} from '../../../redux/user';
+import api from '../../../api';
 
 const Profile = ({navigation}) => {
   const token = useSelector(state => state.user.token);
@@ -22,6 +23,7 @@ const Profile = ({navigation}) => {
 
   const [list, setList] = useState([]);
   const [listName, setListName] = useState('Sorular');
+  const [teamsList, setTeamsList] = useState([]);
 
   const getQuestions = () => {
     dispatch(fetchQuestionList(token));
@@ -30,22 +32,40 @@ const Profile = ({navigation}) => {
   };
   const getTeams = () => {
     dispatch(fetchTeamList(token));
-    setList(teams.list.filter(q => q.ownerId == user.data[0]?._id));
+    setList(teams.list.filter(t => teamsList.some(tm=>tm.teamId==t._id)));
     setListName('Ekipler');
   };
   useEffect(() => {
-    dispatch(fetchUserData(token))
+    dispatch(fetchUserData(token));
   }, []);
 
   useEffect(() => {
     getQuestions();
   }, [user]);
+  useEffect(() => {
+    if (listName == 'Sorular') {
+      setList(questions.list.filter(q => q.userId == user.data[0]?._id));
+    } else {
+      api
+        .get('team/get/teamsForUser', {
+          headers: {
+            Authorization: 'bearer ' + token,
+          },
+        })
+        .then(response => {
+          if (response.status == 200 && response.data.success) {
+            setTeamsList(response.data.data);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [questions, teams]);
 
   useEffect(() => {
-    listName == 'Sorular'
-      ? setList(questions.list.filter(q => q.userId == user.data[0]?._id))
-      : setList(teams.list.filter(q => q.ownerId == user.data[0]?._id));
-  }, [questions, teams]);
+    setList(teams.list.filter(t => teamsList.some(tm=>tm.teamId==t._id)));
+  }, [teamsList]);
 
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
@@ -65,9 +85,17 @@ const Profile = ({navigation}) => {
     );
   };
 
+  const handlePress = async () => {
+    const link = 'https://github.com/' + user?.data[0]?.github;
+    await Linking.openURL(link).catch(err =>
+      console.error("Couldn't load", err),
+    );
+  };
+
   const goToEditPage = () => {
     navigation.navigate('EditProfile', {user: user.data[0]});
   };
+
   return (
     <View style={styles.container}>
       <Header navigation={navigation} type={0} />
@@ -89,7 +117,14 @@ const Profile = ({navigation}) => {
             <Text style={styles.txt_name}>{user?.data[0]?.name}</Text>
             <Text style={styles.txt_info}>EMAİL: {user?.data[0]?.email}</Text>
             {user?.data[0]?.github != '' ? (
-              <Text style={styles.txt_info}>GİTHUB: {user?.data[0]?.github} </Text>
+              <TouchableOpacity
+                style={styles.github_container}
+                onPress={handlePress}>
+                <Text style={styles.txt_info}>
+                  GİTHUB: {user?.data[0]?.github}
+                </Text>
+                <Icon name="open-outline" size={20} />
+              </TouchableOpacity>
             ) : (
               ''
             )}
