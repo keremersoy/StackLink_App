@@ -1,9 +1,19 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, Image} from 'react-native';
+import {Text, View, Linking, TouchableOpacity, Image} from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import styles from './UserInfo.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const UserInfo = ({user}) => {
+  const handlePress = async () => {
+    const link = 'https://github.com/' + user?.github;
+    await Linking.openURL(link).catch(err =>
+      console.error("Couldn't load", err),
+    );
+  };
+  const copyToClipboard = () => {
+    Clipboard.setString(user?.email);
+  };
   //TODO:fotoğraf işlemleri
   return (
     <View style={styles.container}>
@@ -12,9 +22,19 @@ const UserInfo = ({user}) => {
         <View style={styles.info_container}>
           <Text style={styles.txt_name}>{user?.name}</Text>
           <Text style={styles.username_text}>@{user?.username}</Text>
-          <Text style={styles.txt_info}>EMAİL: {user?.email}</Text>
+          <TouchableOpacity
+            style={styles.email_container}
+            onPress={copyToClipboard}>
+            <Text style={styles.txt_info}>EMAİL: {user?.email}</Text>
+            <Icon name="copy-outline" size={20} />
+          </TouchableOpacity>
           {user?.github != '' ? (
-            <Text style={styles.txt_info}>GİTHUB: {user?.github} </Text>
+            <TouchableOpacity
+              style={styles.email_container}
+              onPress={handlePress}>
+              <Text style={styles.txt_info}>GİTHUB: {user?.github} </Text>
+              <Icon name="open-outline" size={20} />
+            </TouchableOpacity>
           ) : (
             ''
           )}

@@ -46,6 +46,12 @@ export default StyleSheet.create({
     textAlign: 'left',
     color: '#1B2430',
   },
+  username:{
+    color: '#1B2430',
+    textAlign:"right",
+    fontWeight:"bold",
+    fontSize:15
+  },
   answer_container: {
     flex: 1,
     marginHorizontal:3,

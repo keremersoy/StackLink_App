@@ -46,10 +46,17 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#1B2430',
     fontSize: 20,
+    borderBottomWidth:1
   },
 
   content: {
     color: '#1B2430',
+    marginLeft:5
+  },
+  username:{
+    color: '#1B2430',
+    textAlign:"left",
+    flex:1
   },
   cancel: {
     flexDirection: 'row',
@@ -59,4 +66,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginRight:10,
   },
+  user_info_container:{
+    flexDirection:"row",
+  }
 });

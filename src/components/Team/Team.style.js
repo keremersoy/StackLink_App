@@ -28,19 +28,23 @@ export default StyleSheet.create({
   },
 
   content_container: {
-    flex: 1,
     marginHorizontal: 10,
   },
 
   title: {
     fontWeight: 'bold',
     color: '#1B2430',
-    fontSize: 20,
+    fontSize: 16,
+    marginLeft:4,
   },
 
-  content: {
+  username: {
     color: '#1B2430',
+    borderWidth:1,
+    borderRadius:5,
+    padding:3,
   },
+
   cancel: {
     flexDirection: 'row',
     alignItems: 'center',

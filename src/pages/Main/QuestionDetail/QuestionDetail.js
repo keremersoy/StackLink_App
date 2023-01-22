@@ -21,9 +21,24 @@ const QuestionDetail = (props) => {
   const [title, setTitle] = useState(question.title);
   const [content, setContent] = useState(question.content);
   const [reply, setReply] = useState('');
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     dispatch(fetchReplyList({token,id:question._id}));
+    api
+    .get('/user/get/' + question.userId, {
+      headers: {
+        Authorization: 'bearer ' + token,
+      },
+    })
+    .then(response => {
+      if (response.status == 200 && response.data.success) {
+        setUserName(response.data.data[0].username);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }, []);
 
   const keyExtractor = (item, index) => {
@@ -65,6 +80,7 @@ const QuestionDetail = (props) => {
         <View style={Style.question_container}>
           {img ? <Image style={Style.image} /> : ''}
           <View style={Style.title_container}>
+          <Text style={Style.username}>@{userName}</Text>
             <Text style={Style.title}>{title}</Text>
           </View>
           <View style={Style.content_container}>

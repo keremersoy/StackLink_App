@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Header.style';
 import api from '../../api';
 
-const Header = ({navigation, type}) => {
+const Header = ({navigation, type,onChangeText}) => {
   const menu_toggle = () => {
     navigation.toggleDrawer();
   };
@@ -23,7 +23,7 @@ const Header = ({navigation, type}) => {
           <Icon name="chevron-back" color={'#1B2430'} size={35} />
         </TouchableOpacity>
       )}
-      {type == 1 ? <TextInput style={styles.input} placeholder="Ara..." /> : ''}
+      {type == 1 ? <TextInput style={styles.input} onChangeText={onChangeText} placeholder="Ara..." /> : ''}
     </View>
   );
 };

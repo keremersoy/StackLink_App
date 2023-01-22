@@ -12,6 +12,8 @@ const Home = ({navigation}) => {
   const questions = useSelector(state => state.question.questions);
   const dispatch = useDispatch();
 
+  const [headerText, setHeaderText] = useState('');
+
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
   };
@@ -26,12 +28,25 @@ const Home = ({navigation}) => {
       </TouchableHighlight>
     );
   };
+
+  const filterList = (item) => {
+    console.log(item);
+    return(
+    headerText != ''
+      ? item.title.toLowerCase().includes(headerText.toLowerCase()) ||
+        item.content.toLowerCase().includes(headerText.toLowerCase())
+      : true)
+  };
+  const getHeaderText = text => {
+    setHeaderText(text);
+  };
+
   return (
     <View style={Styles.container}>
-      <Header navigation={navigation} type={1} />
+      <Header navigation={navigation} onChangeText={getHeaderText} type={1} />
       <FlatList
         keyExtractor={keyExtractor}
-        data={questions.list}
+        data={questions.list.filter(filterList).reverse()}
         renderItem={renderItem}
       />
     </View>

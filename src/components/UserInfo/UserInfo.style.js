@@ -11,6 +11,9 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  email_container:{
+    flexDirection:"row"
+  },
   image: {
     borderRadius: 100,
     width: Dimensions.get('window').width / 4,

@@ -13,6 +13,8 @@ const Teams = ({navigation}) => {
   
   const dispatch = useDispatch();
   
+  const [headerText, setHeaderText] = useState('');
+
   const keyExtractor = (item, index) => {
     return item._id || index * Math.random();
   };
@@ -27,12 +29,23 @@ const Teams = ({navigation}) => {
       </TouchableHighlight>
     );
   };
+
+  const filterList = (item) => {
+    console.log(item);
+    return(
+    headerText != ''
+      ? item.title.toLowerCase().includes(headerText.toLowerCase())
+      : true)
+  };
+  const getHeaderText = text => {
+    setHeaderText(text);
+  };
   return (
     <View style={Styles.container}>
-    <Header navigation={navigation} type={1}/>
+    <Header navigation={navigation} onChangeText={getHeaderText} type={1}/>
       <FlatList
         keyExtractor={keyExtractor}
-        data={teams.list}
+        data={teams.list.filter(filterList).reverse()}
         renderItem={renderItem}
       />
     </View>

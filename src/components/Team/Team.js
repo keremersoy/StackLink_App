@@ -4,12 +4,31 @@ import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './Team.style';
 import api from '../../api.js';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 import {fetchTeamList} from '../../redux/team';
 
 const Team = ({item}) => {
   const token = useSelector(state => state.user.token);
   const userId = useSelector(state => state.user.userId);
+
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    api
+      .get('/user/get/' + item.ownerId, {
+        headers: {
+          Authorization: 'bearer ' + token,
+        },
+      })
+      .then(response => {
+        if (response.status == 200 && response.data.success) {
+          setUserName(response.data.data[0].username);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   const dispatch = useDispatch();
   const remove_team = () => {
@@ -33,8 +52,8 @@ const Team = ({item}) => {
       <View style={styles.body_container}>
         <View style={styles.content_container}>
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.content}>{item.content.substring(0, 80)}...</Text>
         </View>
+      <Text style={styles.username}>@{userName}</Text>
       </View>
       {
         //ekibi sil(kurucu)
