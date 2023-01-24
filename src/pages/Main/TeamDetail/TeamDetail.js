@@ -21,7 +21,7 @@ const TeamDetail = props => {
 
   const [title, setTitle] = useState(team.title);
   const [content, setContent] = useState(team.content);
-  const [members, setMembers] = useState(team.members_num);
+  const [members, setMembers] = useState(persons?.list.filter(m=>m.status>0).length);
 
   const [isShowInfo, setIsShowInfo] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -38,13 +38,13 @@ const TeamDetail = props => {
   useEffect(() => {
     setTitle(team.title);
     setContent(team.content);
-    setMembers(team.members_num);
 
     dispatch(fetchMemberList({token, id: team._id}));
   }, []);
 
   useEffect(() => {
     setIsMember(persons.list.some(person => person.userId == userId));
+    setMembers(persons.list.filter(m=>m.status>0).length);
   }, [persons]);
 
   const keyExtractor = (item, index) => {

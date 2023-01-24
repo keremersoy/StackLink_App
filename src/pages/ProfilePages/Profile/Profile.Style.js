@@ -11,7 +11,7 @@ export default StyleSheet.create({
   top_info_container: {
     flexDirection: 'row',
     padding: 10,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   image: {

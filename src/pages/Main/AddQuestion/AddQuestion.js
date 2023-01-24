@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput,ToastAndroid} from 'react-native';
+import {View, Text, Image, TextInput, ToastAndroid} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Style from './AddQuestion.style.js';
 import api from '../../../api.js';
-import {useSelector,useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {fetchQuestionList} from '../../../redux/question';
 
@@ -16,7 +16,7 @@ const Question = ({navigation}) => {
   const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  
+
   const addQuestion = () => {
     api
       .post(
@@ -30,16 +30,16 @@ const Question = ({navigation}) => {
       )
       .then(response => {
         if (response.status == 200) {
-          setTitle("");
-          setContent("");
-          dispatch(fetchQuestionList(token))
+          setTitle('');
+          setContent('');
+          dispatch(fetchQuestionList(token));
           ToastAndroid.show('Sorunuz paylaşıldı.', ToastAndroid.SHORT);
-          navigation.navigate("Home")
+          navigation.navigate('Home');
         }
       })
       .catch(err => {
         console.log(err);
-        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
+        ToastAndroid.show('Bir hata oluştu!\n' + err, ToastAndroid.SHORT);
       });
   };
 
@@ -52,17 +52,17 @@ const Question = ({navigation}) => {
     })
   }*/
   //TODO: Fotoğraf işlemleri
-  
-
 
   return (
     <View style={Style.container}>
       <View style={Style.inner_container}>
         <View style={Style.body}>
           <Text style={Style.top}>Bir Soru Paylaş</Text>
-          <TouchableOpacity >
+
+          {/*       <TouchableOpacity >
             <Image style={Style.image} />
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
+
           <View style={Style.input_container}>
             <TextInput
               style={Style.text_input}

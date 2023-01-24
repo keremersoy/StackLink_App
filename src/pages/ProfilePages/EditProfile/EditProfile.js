@@ -1,36 +1,109 @@
-
-import {View, Text, TextInput, TouchableOpacity, Image,ToastAndroid} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ToastAndroid,
+} from 'react-native';
 import React, {useState} from 'react';
-import {useSelector,useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Styles from './EditProfile.style';
 import api from '../../../api.js';
 import Header from '../../../components/Header';
 import {fetchUserData} from '../../../redux/user';
+import {launchImageLibrary} from 'react-native-image-picker';
+import { toFormData } from 'axios';
 
 //TODO: foto ekleme işlemleri
-const EditProfile = (props) => {
+const EditProfile = props => {
   const token = useSelector(state => state.user.token);
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const {user} = props.route.params;
-  const {navigation}=props;
+  const {navigation} = props;
+  const [img, setImg] = useState(user?.img);
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
   const [github, setGithub] = useState(user?.github);
 
+  const launch_image_library = () => {
+    let options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    launchImageLibrary(
+      options,
+      response => {
+        try {
+          //console.log('Response = ', response);
+
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+          } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+            alert(response.customButton);
+          } else {
+            console.log('response', JSON.stringify(response));
+            setImg(response.assets[0].uri);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      },
+    );
+  };
+
   const btn_cancel = () => {
     navigation.goBack();
   };
+
+  const uploadImage = async () => {
+    const profilePhoto = {
+      name: new Date() + '_profile',
+      uri: img,
+      type: 'image/jpeg',
+    };
+    const formData = new FormData();
+    formData.append('profile', profilePhoto);
+    const data=toFormData(profilePhoto);
+    console.log('formdata: ', data);
+    try {
+      const res = await api.post(
+        '/image/upload/profile',
+       {...data},
+        {
+          headers: {
+            Accept: 'application/json',
+            "Content-Type": 'multipart/form-data',
+            Authorization: 'bearer ' + token,
+          },
+        },
+      );
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const btn_save = () => {
-    const tempUser={};
-    tempUser.name=name;
-    tempUser.email=email;
-    tempUser.github=github;
+   /* if (img != user.img) {
+      uploadImage();
+    }*/
+
+    const tempUser = {};
+    tempUser.name = name;
+    tempUser.email = email;
+    tempUser.github = github;
     api
       .put(
-        'user/update/'+user._id,
-        {data:tempUser},
+        'user/update/' + user._id,
+        {data: tempUser},
         {
           headers: {
             Authorization: 'bearer ' + token,
@@ -44,20 +117,31 @@ const EditProfile = (props) => {
         }
       })
       .catch(err => {
-        console.log(err);        
-        ToastAndroid.show('Bir hata oluştu!\n'+err, ToastAndroid.SHORT);
+        console.log(err);
+        ToastAndroid.show('Bir hata oluştu!\n' + err, ToastAndroid.SHORT);
       });
-      dispatch(fetchUserData(token))
-
+    dispatch(fetchUserData(token));
   };
 
   return (
     <View style={Styles.container}>
-    <Header navigation={navigation} type={0}/>
+      <Header navigation={navigation} type={0} />
       <View style={Styles.body_container}>
-        <TouchableOpacity style={Styles.text_input_container}>
-          <Image style={Styles.image} />
-        </TouchableOpacity>
+        {/*
+          <TouchableOpacity
+          style={Styles.text_input_container}
+          onPress={launch_image_library}>
+          {img != '' ? (
+            <Image
+              style={Styles.image}
+              source={{uri: img}}
+              resizeMethod="scale"
+            />
+          ) : (
+            <Image style={Styles.image} />
+          )}
+          </TouchableOpacity>*/}
+          <Text style={Styles.title}>Profili Düzenle</Text>
         <View style={Styles.text_input_container}>
           <Text style={Styles.text}>İsim</Text>
           <TextInput

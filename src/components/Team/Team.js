@@ -70,7 +70,9 @@ const Team = ({item}) => {
       }
       <View style={styles.members_num_container}>
         <Icon name="people-sharp" size={25}></Icon>
-        <Text>{item.members_num}</Text>
+        {
+          //<Text>{item.members_num}</Text>
+        }
       </View>
     </View>
   );

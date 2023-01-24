@@ -8,9 +8,11 @@ export default StyleSheet.create({
     },
     inner_container:{
         flex:1,
-        justifyContent:"flex-start",
-        alignItems:"center",
+        justifyContent:"center",
         margin:5
+    },
+    body:{
+        justifyContent:"center"
     },
     image:{
         marginTop:15,
@@ -35,7 +37,6 @@ export default StyleSheet.create({
         borderWidth:2,
     },
     content_container:{
-        flex:1,
         flexDirection:"row",
         marginVertical:5,
     },  
@@ -56,8 +57,8 @@ export default StyleSheet.create({
         padding:5,
     },
     top:{
-        fontSize:25,
-        padding:10,
+        fontSize:40,
+        padding:20,
         fontWeight:"bold",
         textAlign:"center",
         borderBottomWidth:1

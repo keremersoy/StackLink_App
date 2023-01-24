@@ -10,6 +10,7 @@ export default StyleSheet.create({
         justifyContent:"center"
     },
     body:{
+        justifyContent:"center"
     },
     top:{
       fontSize:40,

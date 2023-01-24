@@ -9,7 +9,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 30,
-    marginBottom:80
+    marginBottom: 80,
   },
   text_input_container: {
     justifyContent: 'center',
@@ -35,7 +35,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     width: Dimensions.get('window').width / 4,
     height: Dimensions.get('window').width / 4,
-    backgroundColor: 'gray',
+    backgroundColor:"gray",
     borderWidth: 1,
     borderColor: 'black',
     margin: 20,
@@ -43,8 +43,8 @@ export default StyleSheet.create({
   btns_container: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginRight:15,
-    marginTop:5,
+    marginRight: 15,
+    marginTop: 5,
   },
   btn_save_container: {
     alignItems: 'center',
@@ -71,5 +71,14 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     padding: 5,
+  },
+  title: {
+    color: '#1B2430',
+    fontWeight: 'bold',
+    fontSize: 25,
+    textAlign:"center",
+    padding: 5,
+    marginBottom:15,
+    borderBottomWidth:1
   },
 });

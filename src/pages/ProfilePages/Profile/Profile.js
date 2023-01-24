@@ -101,7 +101,8 @@ const Profile = ({navigation}) => {
       <Header navigation={navigation} type={0} />
       <View style={styles.info_container}>
         <View style={styles.top_info_container}>
-          <Image style={styles.image} />
+         {// <Image style={styles.image} />
+         }
           <View style={styles.username_container}>
             <Text style={styles.username_text}>{user?.data[0]?.username}</Text>
             <TouchableOpacity
