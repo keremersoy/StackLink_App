@@ -19,7 +19,8 @@ const UserInfo = ({user}) => {
   return (
     <View style={styles.container}>
       <View style={styles.top_info_container}>
-        <Image style={styles.image} />
+ {//       <Image style={styles.image} />
+ }
         <View style={styles.info_container}>
           <Text style={styles.txt_name}>{user?.name}</Text>
           <Text style={styles.username_text}>@{user?.username}</Text>

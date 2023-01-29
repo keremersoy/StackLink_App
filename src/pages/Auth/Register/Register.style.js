@@ -78,6 +78,7 @@ export default StyleSheet.create({
     header:{
         margin:40,
         fontSize:40,
+        color:"#1B2430",
         textAlign:"center",
         fontWeight:"bold"
     }

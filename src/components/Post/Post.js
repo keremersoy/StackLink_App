@@ -75,13 +75,8 @@ const Post = ({item}) => {
           )
         }
         <View style={styles.rating_container}>
-          <TouchableOpacity>
-            <Icon name="chevron-up-outline" size={25}></Icon>
-          </TouchableOpacity>
-          <Text>{score}</Text>
-          <TouchableOpacity>
-            <Icon name="chevron-down-outline" size={25}></Icon>
-          </TouchableOpacity>
+          {//TODO:vote
+          }
         </View>
       </View>
       <View style={styles.user_info_container}>

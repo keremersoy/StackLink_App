@@ -1,4 +1,5 @@
 import axios from "axios";
 export default axios.create({
-    baseURL:"http://192.168.56.1:5000",
+    //localhost yerine ip adresiniz yazılmalı
+    baseURL:"http://localhost:5000",
 })
