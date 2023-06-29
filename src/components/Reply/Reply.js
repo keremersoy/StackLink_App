@@ -5,6 +5,7 @@ import styles from './Reply.style';
 import {useDispatch, useSelector} from 'react-redux';
 import api from '../../api.js';
 import {fetchReplyList} from '../../redux/reply';
+import Rating from '../Rating';
 
 const Reply = ({item}) => {
   const token = useSelector(state => state.user.token);
@@ -54,15 +55,9 @@ const Reply = ({item}) => {
       </View>
       <View style={styles.container}>
         <View style={styles.body_container}>
-          <View style={styles.rating_container}>
-            <TouchableOpacity>
-              <Icon name="chevron-up-outline" size={20}></Icon>
-            </TouchableOpacity>
-            <Text>{score}</Text>
-            <TouchableOpacity>
-              <Icon name="chevron-down-outline" size={20}></Icon>
-            </TouchableOpacity>
-          </View>
+            <View style={styles.rating_container}>
+              <Rating score={score} replyId={item._id}/>
+            </View>
           <View style={styles.content_container}>
             <Text style={styles.content}>{item.content}</Text>
           </View>
